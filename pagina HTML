@@ -1,0 +1,41 @@
+<html>
+<head>
+        <title> Prima pagina html    </title>
+
+
+
+</head>
+
+<body>
+ <p>
+ 
+ <h1>
+ Ciao sono la tua prima pagina.    
+</h1>
+
+Sono Marco Palladino e inizio a studiare l'html.
+<br>
+Chi ha inventato questo linguaggio?
+questo linguaggio lo ha inventato Tim Berners - Lee
+<br>
+Quando è stato inventato?
+è stato inventato alla fine del 1991, ma è stato rilasciato nel 1993
+<br>
+Quali sono gli scopi di questo linguaggio?
+L'HTML permette di impaginare e formattare pagine collegate fra di loro attraverso link, ovvero i siti web
+<br>
+Che cose il WEB?
+Sottorete di Internet che riunisce i siti che permettono un sistema di navigazione ipertestuale e visualizzabili sul computer per mezzo di appositi programmi software (detti browser 
+<br>
+Che problemi risolveva il WEB ?
+Sottorete di Internet che riunisce i siti che permettono un sistema di navigazione ipertestuale e visualizzabili sul computer per mezzo di appositi programmi software (detti browser )
+<br>
+Che differenza tra web e html ed internet?
+Internet è un'infrastruttura fisica e virtuale che collega diverse reti tra loro, che a loro volta collegano diversi dispositivi per trasferire informazioni. Il Web, invece, è un servizio che sfrutta Internet per la condivisione di risorse mediante documenti ipertestuali
+<br>
+Fatto da Alessandro Guttadauro
+
+
+ </p>
+<body>
+</html>
