@@ -19,19 +19,19 @@
         function TiroMorraBot() {
             let morraArray = ["sasso", "carta", "forbice"];
             
-            // Generate random choices for bot 1 and bot 2
+            
             let numeroCasuale = Math.floor(Math.random() * 3);
             let numeroCasuale_2 = Math.floor(Math.random() * 3);
             
-            // Get the choices
+            
             let choiceBot1 = morraArray[numeroCasuale];
             let choiceBot2 = morraArray[numeroCasuale_2];
 
-            // Display the choices
+            
             document.getElementById("out2").innerHTML = choiceBot1;
             document.getElementById("out3").innerHTML = choiceBot2;
 
-            // Determine the winner
+            
             let winner = "";
             if (choiceBot1 === choiceBot2) {
                 winner = "Pareggio! Nessuno vince.";
@@ -45,7 +45,7 @@
                 winner = "Vince Morra Bot 2!";
             }
 
-            // Display the winner
+            
             document.getElementById("winner").innerHTML = winner;
         }
     </script>
