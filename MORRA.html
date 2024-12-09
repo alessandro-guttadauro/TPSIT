@@ -3,55 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Morra array1</title>
+    <title>Morra Game</title>
 </head>
 <body>
     <h1>MOORRA 3a-BoT</h1>
-    <p id="out1"></p>
-        <p> Morra bot tira:  </p>
-        <button onclick="TiroMorraBot()">  START TIRO</button>
+    <p>Morra bot 1 tira:</p>
     <p id="out2"></p>
+    <p>Morra bot 2 tira:</p>
     <p id="out3"></p>
-
-
+    <p id="out1"></p>
+    <p id="winner"></p>
+    <button onclick="TiroMorraBot()">START TIRO</button>
 
     <script>
+        function TiroMorraBot() {
+            let morraArray = ["sasso", "carta", "forbice"];
+            
+            // Generate random choices for bot 1 and bot 2
+            let numeroCasuale = Math.floor(Math.random() * 3);
+            let numeroCasuale_2 = Math.floor(Math.random() * 3);
+            
+            // Get the choices
+            let choiceBot1 = morraArray[numeroCasuale];
+            let choiceBot2 = morraArray[numeroCasuale_2];
 
-    let numeroCasuale =0;
-    
+            // Display the choices
+            document.getElementById("out2").innerHTML = choiceBot1;
+            document.getElementById("out3").innerHTML = choiceBot2;
 
-    
+            // Determine the winner
+            let winner = "";
+            if (choiceBot1 === choiceBot2) {
+                winner = "Pareggio! Nessuno vince.";
+            } else if (
+                (choiceBot1 === "sasso" && choiceBot2 === "forbice") ||
+                (choiceBot1 === "carta" && choiceBot2 === "sasso") ||
+                (choiceBot1 === "forbice" && choiceBot2 === "carta")
+            ) {
+                winner = "Vince Morra Bot 1!";
+            } else {
+                winner = "Vince Morra Bot 2!";
+            }
 
-
-
-
-
-
-    function TiroMorraBot(){
-
-   
-    numeroCasuale=Math.floor(Math.random()*3);
-    numeroCasuale_2=Math.floor(Math.random()*3);
-    //genera numeri tra 0 e 1   dove 0 è incluso
-    //e 1 escluso
-    // un array è una lista di oggetti omegenei tra loro
-    // un array è un insieme di variabili numerate omogenne tra loro
-
-    // Un array è una struttura di dati utilizzata in informatica
-    // per memorizzare una collezione di elementi
-    // (solitamente dello stesso tipo) in una sequenza ordinata.
-    // Ogni elemento dell'array è identificato da un indice o posizione numerica,
-    // che consente di accedervi direttamente.
-    let morraArray=["sasso","carta","forbice"]
-    document.getElementById("out1").innerHTML=morraArray;
-    document.getElementById("out2").innerHTML=morraArray[numeroCasuale];
-    document.getElementById('out3').innerHTML = morraArray[numeroCasuale_2];
-    
-    
-
-    }
-
-</script>
-   
+            // Display the winner
+            document.getElementById("winner").innerHTML = winner;
+        }
+    </script>
 </body>
 </html>
