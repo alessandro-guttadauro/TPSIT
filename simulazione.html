@@ -75,9 +75,7 @@
         <div id="meta" class="result"></div>
 
         <div id="complemento" class="result"></div>
-
         <div id="somma" class="result"></div>
-
         <div id="moltiplica" class="result"></div>
 
     </div>
@@ -85,8 +83,6 @@
 
 
     <script>
-
-        // Funzione per verificare se un numero è primo
 
         function isPrime(n) {
 
@@ -102,64 +98,28 @@
 
         }
 
-
-
-        // Funzione principale per generare il numero e calcolare i risultati
-
         function generaNumero() {
 
             const numero = Math.floor(Math.random() * 1000) + 1; // Numero casuale tra 1 e 1000
-
-            
-
-            // Calcoli richiesti
-
             const pariDispari = numero % 2 === 0 ? "PARI" : "DISPARI";
-
             const primo = isPrime(numero) ? "PRIMO" : "NON PRIMO";
-
             const doppio = numero * 2;
-
             const metaIntera = Math.floor(numero / 2);
-
             const complemento = 1000 - numero;
-
             const somma = numero - 1 + numero + 1;
-
             const moltiplica = (numero * 3.14).toFixed(2);
 
-
-
-            // Mostra i risultati sulla pagina
-
             document.getElementById("numero").innerHTML = `Numero generato: <strong>${numero}</strong>`;
-
             document.getElementById("parita").innerHTML = `Il numero è: <strong>${pariDispari}</strong>`;
-
             document.getElementById("primo").innerHTML = `Stato: <strong>${primo}</strong>`;
-
             document.getElementById("doppio").innerHTML = `Doppio: <strong>${doppio}</strong>`;
-
             document.getElementById("meta").innerHTML = `Metà intera: <strong>${metaIntera}</strong>`;
-
-            document.getElementById("complemento").innerHTML = `Complemento (1000 - n): <strong>${complemento}</strong>`;
-
+            document.getElementById("compleento").innerHTML = `Complemento (1000 - n): <strong>${complemento}</strong>`;
             document.getElementById("somma").innerHTML = `Somma del precedente e successivo: <strong>${somma}</strong>`;
-
             document.getElementById("moltiplica").innerHTML = `Moltiplicato per 3.14: <strong>${moltiplica}</strong>`;
 
         }
-
-
-
-        // Genera un numero ogni 5 secondi
-
         setInterval(generaNumero, 5000);
-
-
-
-        // Esegue la funzione subito all'avvio
-
         generaNumero();
 
     </script>
