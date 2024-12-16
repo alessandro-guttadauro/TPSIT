@@ -10,48 +10,8 @@
 
     <title>Verifica Simulazione</title>
 
-    <style>
-
-        body {
-
-            font-family: Arial, sans-serif;
-
-            text-align: center;
-
-            margin-top: 60px;
-
-            background-color: #ffffff;
-
-        }
-
-        h1 {
-
-            color: #ff0000;
-
-        }
-
-        .container {
-
-            margin: auto;
-            background: rgb(172, 172, 172);
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(1, 5, 255, 0.329);
-            max-width: 500px;
-
-        }
-
-        .result {
-
-            margin: 10px 0;
-            font-size: 18px;
-
-        }
-
-    </style>
-
+   
 </head>
-
 <body>
 
     <h1>Verifica Simulazione</h1>
@@ -67,6 +27,7 @@
         <div id="moltiplica" class="result"></div>
 
     </div>
+<body>
 
 
 
@@ -88,7 +49,7 @@
 
         function generaNumero() {
 
-            const numero = Math.floor(Math.random() * 1000) + 1; // Numero casuale tra 1 e 1000
+            const numero = Math.floor(Math.random() * 1000) + 1; 
             const pariDispari = numero % 2 === 0 ? "PARI" : "DISPARI";
             const primo = isPrime(numero) ? "PRIMO" : "NON PRIMO";
             const doppio = numero * 2;
