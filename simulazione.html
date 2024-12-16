@@ -58,14 +58,14 @@
             const somma = numero - 1 + numero + 1;
             const moltiplica = (numero * 3.14).toFixed(2);
 
-            document.getElementById("numero").innerHTML = `Numero generato: <strong>${numero}</strong>`;
-            document.getElementById("parita").innerHTML = `Il numero è: <strong>${pariDispari}</strong>`;
-            document.getElementById("primo").innerHTML = `Stato: <strong>${primo}</strong>`;
-            document.getElementById("doppio").innerHTML = `Doppio: <strong>${doppio}</strong>`;
-            document.getElementById("meta").innerHTML = `Metà intera: <strong>${metaIntera}</strong>`;
-            document.getElementById("compleento").innerHTML = `Complemento (1000 - n): <strong>${complemento}</strong>`;
-            document.getElementById("somma").innerHTML = `Somma del precedente e successivo: <strong>${somma}</strong>`;
-            document.getElementById("moltiplica").innerHTML = `Moltiplicato per 3.14: <strong>${moltiplica}</strong>`;
+            document.getElementById("numero").innerHTML = `Numero generato: ${numero}`;
+            document.getElementById("parita").innerHTML = `Il numero è: ${pariDispari}`;
+            document.getElementById("primo").innerHTML = `Stato:${primo}`;
+            document.getElementById("doppio").innerHTML = `Doppio: ${doppio}`;
+            document.getElementById("meta").innerHTML = `Metà intera: ${metaIntera}`;
+            document.getElementById("compleento").innerHTML = `Complemento (1000 - n): ${complemento}`;
+            document.getElementById("somma").innerHTML = `Somma del precedente e successivo: ${somma}`;
+            document.getElementById("moltiplica").innerHTML = `Moltiplicato per 3.14: ${moltiplica}`;
 
         }
         setInterval(generaNumero, 5000);
