@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Griglie Interattive con Bootstrap 5</title>
-    <link rel="stylesheet" href="bootstrap.min.css"> <!-- File Bootstrap locale -->
+    <link rel="stylesheet" href="bootstrap.min.css"> <!-- Bootstrap locale -->
     <style>
         .grid-container {
             display: flex;
@@ -69,14 +69,15 @@
 
     <script>
         function handleClick(cellNumber) {
-            let input = prompt("Inserisci una stringa per invertirla:");
+            let input = prompt("Cella " + cellNumber + ": Inserisci una stringa per invertirla:");
             if (input !== null) {
                 let reversedString = input.split('').reverse().join('');
-                alert("Stringa invertita: " + reversedString);
+                alert("Cella " + cellNumber + " - Stringa invertita: " + reversedString);
             }
         }
     </script>
 
-    <script src="bootstrap.bundle.min.js"></script> <!-- File Bootstrap locale -->
+    <script src="bootstrap.bundle.min.js"></script> <!-- Bootstrap locale -->
 </body>
 </html>
+
