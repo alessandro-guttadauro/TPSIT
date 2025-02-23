@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gioco Memory Sequenziale</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .btn-grid {
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+            font-size: 24px;
+        }
+        .active {
+            background-color: #ffcc00; /* Colore quando il pulsante è attivo */
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container text-center mt-5">
+        <h1>Gioco Memory Sequenziale</h1>
+        <button id="start-btn" class="btn btn-primary mt-4">Inizia</button>
+        <div id="game-area" class="mt-4 d-flex flex-wrap justify-content-center hidden">
+            <!-- Pulsanti della griglia -->
+            <button class="btn btn-light btn-grid" data-index="0"></button>
+            <button class="btn btn-light btn-grid" data-index="1"></button>
+            <button class="btn btn-light btn-grid" data-index="2"></button>
+            <button class="btn btn-light btn-grid" data-index="3"></button>
+            <button class="btn btn-light btn-grid" data-index="4"></button>
+            <button class="btn btn-light btn-grid" data-index="5"></button>
+            <button class="btn btn-light btn-grid" data-index="6"></button>
+            <button class="btn btn-light btn-grid" data-index="7"></button>
+            <button class="btn btn-light btn-grid" data-index="8"></button>
+        </div>
+        <div id="message" class="mt-4"></div>
+        <div id="score" class="mt-4">Punteggio: 0</div>
+        <div id="timer" class="mt-4">Tempo: 0s</div> <!-- Area del timer -->
+    </div>
+
+    <script>
+        const buttons = document.querySelectorAll('.btn-grid');
+        const startButton = document.getElementById('start-btn');
+        const messageDiv = document.getElementById('message');
+        const scoreDiv = document.getElementById('score');
+        const timerDiv = document.getElementById('timer');
+        let sequence = [];
+        let userInput = [];
+        let score = 0;
+        let level = 0;
+        let timer;
+        let timeElapsed = 0;
+
+        startButton.addEventListener('click', startGame);
+
+        function startGame() {
+            sequence = [];
+            userInput = [];
+            score = 0;
+            level = 0;
+            timeElapsed = 0;
+            messageDiv.textContent = '';
+            scoreDiv.textContent = 'Punteggio: 0';
+            timerDiv.textContent = 'Tempo: 0s'; // Resetta il timer
+            startButton.classList.add('hidden');
+            document.getElementById('game-area').classList.remove('hidden');
+            nextSequence();
+            startTimer(); // Avvia il timer
+        }
+
+        function startTimer() {
+            timer = setInterval(() => {
+                timeElapsed++;
+                timerDiv.textContent = 'Tempo: ' + timeElapsed + 's';
+            }, 1000);
+        }
+
+        function nextSequence() {
+            userInput = [];
+            level++;
+            scoreDiv.textContent = 'Punteggio: ' + score;
+            const randomIndex = Math.floor(Math.random() * buttons.length);
+            sequence.push(randomIndex);
+            showSequence();
+        }
+
+        function showSequence() {
+            let i = 0;
+            const interval = setInterval(() => {
+                if (i < sequence.length) {
+                    const button = buttons[sequence[i]];
+                    button.classList.add('active');
+                    setTimeout(() => {
+                        button.classList.remove('active');
+                    }, 500);
+                    i++;
+                } else {
+                    clearInterval(interval);
+                    enableButtons();
+                }
+            }, 1000);
+        }
+
+        function enableButtons() {
+            buttons.forEach(button => {
+                button.addEventListener('click', handleUserClick);
+            });
+        }
+
+        function handleUserClick(e) {
+            const userIndex = parseInt(e.target.dataset.index); // Converte l'indice in un numero intero
+            userInput.push(userIndex);
+            const button = buttons[userIndex];
+            button.classList.add('active');
+            setTimeout(() => {
+                button.classList.remove('active');
+            }, 500);
+            checkInput();
+        }
+
+        function checkInput() {
+            const currentIndex = userInput.length - 1;
+            if (userInput[currentIndex] !== sequence[currentIndex]) {
+                clearInterval(timer); // Ferma il timer
+                messageDiv.textContent = 'Errore! Riprova.';
+                document.getElementById('game-area').classList.add('hidden');
+                startButton.classList.remove('hidden');
+                return;
+            }
+            if (userInput.length === sequence.length) {
+                score++;
+                setTimeout(nextSequence, 1000);
+            }
+        }
+    </script>
+</body>
+</html>
