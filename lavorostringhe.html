@@ -3,65 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Operazioni con Stringhe</title>
+    <title>Manipolazione Stringhe</title>
     <script>
-        // Funzione per calcolare la lunghezza di una stringa
         function calcolaLunghezza() {
-            var str = document.getElementById("inputStringa").value;
-            alert("La lunghezza della stringa è: " + str.length);
+            let str1 = document.getElementById("string1").value;
+            let str2 = document.getElementById("string2").value;
+            document.getElementById("length1").innerText = "Lunghezza Stringa 1: " + str1.length;
+            document.getElementById("length2").innerText = "Lunghezza Stringa 2: " + str2.length;
         }
 
-        // Funzione per restituire la stringa al contrario
-        function stringaInversa() {
-            var str = document.getElementById("inputStringa").value;
-            var strInversa = str.split("").reverse().join("");
-            alert("La stringa al contrario è: " + strInversa);
+        function invertiStringa() {
+            let str = document.getElementById("string1").value;
+            let reversed = str.split('').reverse().join('');
+            document.getElementById("reversed").innerText = "Stringa 1 invertita: " + reversed;
         }
 
-        // Funzione per unire due stringhe
         function unisciStringhe() {
-            var str1 = document.getElementById("inputStringa1").value;
-            var str2 = document.getElementById("inputStringa2").value;
-            var unione = str1 + str2;
-            alert("Le stringhe unite sono: " + unione);
+            let str1 = document.getElementById("string1").value;
+            let str2 = document.getElementById("string2").value;
+            document.getElementById("merged").innerText = "Stringhe unite: " + str1 + str2;
         }
 
-        // Funzione per calcolare la somma delle lunghezze e controllare la lunghezza della seconda stringa
         function sommaLunghezze() {
-            var str1 = document.getElementById("inputStringa1").value;
-            var str2 = document.getElementById("inputStringa2").value;
-            var somma = str1.length + str2.length;
-            alert("La somma delle lunghezze è: " + somma);
+            let str1 = document.getElementById("string1").value;
+            let str2 = document.getElementById("string2").value;
+            let sum = str1.length + str2.length;
+            let message = "Somma lunghezze: " + sum;
             if (str2.length > 20) {
-                alert("La stringa b è troppo lunga!");
+                message += " - Attenzione: Stringa 2 troppo lunga!";
             }
+            document.getElementById("sum").innerText = message;
         }
     </script>
 </head>
 <body>
-
-    <h1>Operazioni con Stringhe</h1>
-
-    <!-- Input per la prima stringa -->
-    <label for="inputStringa1">Inserisci la prima stringa:</label>
-    <input type="text" id="inputStringa1">
+    <h2>Manipolazione Stringhe</h2>
+    <label for="string1">Stringa 1:</label>
+    <input type="text" id="string1">
+    <br>
+    <label for="string2">Stringa 2:</label>
+    <input type="text" id="string2">
     <br><br>
-
-    <!-- Input per la seconda stringa -->
-    <label for="inputStringa2">Inserisci la seconda stringa:</label>
-    <input type="text" id="inputStringa2">
-    <br><br>
-
-    <!-- Input per una singola stringa -->
-    <label for="inputStringa">Inserisci una stringa:</label>
-    <input type="text" id="inputStringa">
-    <br><br>
-
-    <!-- Pulsanti per eseguire le funzioni -->
+    
     <button onclick="calcolaLunghezza()">Calcola Lunghezza</button>
-    <button onclick="stringaInversa()">Stringa al contrario</button>
-    <button onclick="unisciStringhe()">Unisci le stringhe</button>
-    <button onclick="sommaLunghezze()">Somma lunghezze</button>
-
+    <p id="length1"></p>
+    <p id="length2"></p>
+    
+    <button onclick="invertiStringa()">Inverti Stringa 1</button>
+    <p id="reversed"></p>
+    
+    <button onclick="unisciStringhe()">Unisci Stringhe</button>
+    <p id="merged"></p>
+    
+    <button onclick="sommaLunghezze()">Somma Lunghezze</button>
+    <p id="sum"></p>
 </body>
 </html>
