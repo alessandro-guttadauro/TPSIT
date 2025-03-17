@@ -6,14 +6,20 @@
     <title>Gioco Memory Sequenziale</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
     <style>
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+        }
         .btn-grid {
             width: 100px;
             height: 100px;
-            margin: 10px;
             font-size: 24px;
         }
         .active {
-            background-color: #ffcc00; /* Colore quando il pulsante è attivo */
+            background-color: #ffcc00;
         }
         .hidden {
             display: none;
@@ -24,8 +30,8 @@
     <div class="container text-center mt-5">
         <h1>Gioco Memory Sequenziale</h1>
         <button id="start-btn" class="btn btn-primary mt-4">Inizia</button>
-        <div id="game-area" class="mt-4 d-flex flex-wrap justify-content-center hidden">
-            <!-- Pulsanti della griglia -->
+        <div id="game-area" class="grid-container hidden">
+            <!-- Pulsanti della griglia 3x3 -->
             <button class="btn btn-light btn-grid" data-index="0"></button>
             <button class="btn btn-light btn-grid" data-index="1"></button>
             <button class="btn btn-light btn-grid" data-index="2"></button>
@@ -38,7 +44,7 @@
         </div>
         <div id="message" class="mt-4"></div>
         <div id="score" class="mt-4">Punteggio: 0</div>
-        <div id="timer" class="mt-4">Tempo: 0s</div> <!-- Area del timer -->
+        <div id="timer" class="mt-4">Tempo: 0s</div>
     </div>
 
     <script>
@@ -50,7 +56,6 @@
         let sequence = [];
         let userInput = [];
         let score = 0;
-        let level = 0;
         let timer;
         let timeElapsed = 0;
 
@@ -60,15 +65,14 @@
             sequence = [];
             userInput = [];
             score = 0;
-            level = 0;
             timeElapsed = 0;
             messageDiv.textContent = '';
             scoreDiv.textContent = 'Punteggio: 0';
-            timerDiv.textContent = 'Tempo: 0s'; // Resetta il timer
+            timerDiv.textContent = 'Tempo: 0s';
             startButton.classList.add('hidden');
             document.getElementById('game-area').classList.remove('hidden');
             nextSequence();
-            startTimer(); // Avvia il timer
+            startTimer();
         }
 
         function startTimer() {
@@ -80,7 +84,6 @@
 
         function nextSequence() {
             userInput = [];
-            level++;
             scoreDiv.textContent = 'Punteggio: ' + score;
             const randomIndex = Math.floor(Math.random() * buttons.length);
             sequence.push(randomIndex);
@@ -111,7 +114,7 @@
         }
 
         function handleUserClick(e) {
-            const userIndex = parseInt(e.target.dataset.index); // Converte l'indice in un numero intero
+            const userIndex = parseInt(e.target.dataset.index);
             userInput.push(userIndex);
             const button = buttons[userIndex];
             button.classList.add('active');
@@ -124,7 +127,7 @@
         function checkInput() {
             const currentIndex = userInput.length - 1;
             if (userInput[currentIndex] !== sequence[currentIndex]) {
-                clearInterval(timer); // Ferma il timer
+                clearInterval(timer);
                 messageDiv.textContent = 'Errore! Riprova.';
                 document.getElementById('game-area').classList.add('hidden');
                 startButton.classList.remove('hidden');
