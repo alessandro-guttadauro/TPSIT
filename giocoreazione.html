@@ -39,7 +39,7 @@
   <div id="results"></div>
 
   <script>
-    const colors = ['red', 'blue', 'green', 'yellow', 'purple', 'orange'];
+    const colors = ['rosso', 'blu', 'verde', 'giallo', 'viola', 'arancione'];
     const reactionTimes = [];
     let round = 0;
     let startTime = 0;
@@ -76,7 +76,7 @@
       if (clickedColor === correctColor) {
         reactionTimes.push(time.toFixed(2));
       } else {
-        reactionTimes.push('X'); // clic sbagliato
+        reactionTimes.push('click sbagliato'); // clic sbagliato
       }
       round++;
       if (round < totalRounds) {
