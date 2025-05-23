@@ -1,35 +1,72 @@
-const L1 = 0;
-const L2 = 1;
-const mediaRange = (L2 - L1) / 2;
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Generatore Numeri Casuali</title>
+  <style>
+    body { font-family: Arial; padding: 20px; background: #f0f0f0; }
+    .box { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px #ccc; }
+    h2 { margin-top: 0; }
+    pre { background: #eee; padding: 10px; overflow: auto; max-height: 300px; }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h2>Generatore di Numeri Casuali (0-1)</h2>
+    <p><strong>Ultimo numero:</strong> <span id="ultimoNumero">-</span></p>
+    <p><strong>Distanza da 0.5:</strong> <span id="distanza">-</span></p>
+    <p><strong>Media ultimi 50:</strong> <span id="media">-</span></p>
+    <h3>Log:</h3>
+    <pre id="log"></pre>
+  </div>
 
-const ArrayNumeriCasuali = [];
-const ArrayRapporti = [];
-const DistanzeDallaMedia = [];
+  <script>
+    const L1 = 0;
+    const L2 = 1;
+    const mediaRange = (L2 - L1) / 2; // = 0.5
 
-function generaNumeroCasuale() {
-  const numero = Math.random() * (L2 - L1) + L1; // float tra 0 e 1
-  ArrayNumeriCasuali.push(numero);
+    const ArrayNumeriCasuali = [];
+    const ArrayRapporti = [];
+    const DistanzeDallaMedia = [];
 
-  // Calcola rapporto con il numero precedente, se esiste
-  if (ArrayNumeriCasuali.length > 1) {
-    const n = numero / ArrayNumeriCasuali[ArrayNumeriCasuali.length - 2];
-    ArrayRapporti.push(n);
-  }
+    const ultimoNumeroEl = document.getElementById('ultimoNumero');
+    const distanzaEl = document.getElementById('distanza');
+    const mediaEl = document.getElementById('media');
+    const logEl = document.getElementById('log');
 
-  // Calcola distanza dalla media del range
-  const distanza = Math.abs(numero - mediaRange);
-  DistanzeDallaMedia.push(distanza);
+    function generaNumeroCasuale() {
+      const numero = Math.random() * (L2 - L1) + L1;
+      ArrayNumeriCasuali.push(numero);
 
-  // Calcola la media ogni 50 numeri
-  if (ArrayNumeriCasuali.length % 50 === 0) {
-    const ultimi50 = ArrayNumeriCasuali.slice(-50);
-    const media50 = ultimi50.reduce((a, b) => a + b, 0) / 50;
-    console.log(`Media ultimi 50 numeri: ${media50.toFixed(4)}`);
-  }
+      // Calcolo rapporto con numero precedente
+      if (ArrayNumeriCasuali.length > 1) {
+        const precedente = ArrayNumeriCasuali[ArrayNumeriCasuali.length - 2];
+        const rapporto = numero / precedente;
+        ArrayRapporti.push(rapporto);
+      }
 
-  // Output per debug
-  console.log(`Numero: ${numero.toFixed(4)}, Distanza dalla media: ${distanza.toFixed(4)}`);
-}
+      // Calcolo distanza dalla media
+      const distanza = Math.abs(numero - mediaRange);
+      DistanzeDallaMedia.push(distanza);
 
-// Avvia la generazione ogni 500ms
-setInterval(generaNumeroCasuale, 500);
+      // Aggiorna media ogni 50 numeri
+      if (ArrayNumeriCasuali.length % 50 === 0) {
+        const ultimi50 = ArrayNumeriCasuali.slice(-50);
+        const somma = ultimi50.reduce((acc, val) => acc + val, 0);
+        const media = somma / 50;
+        mediaEl.textContent = media.toFixed(4);
+        logEl.textContent += `Media di 50 numeri: ${media.toFixed(4)}\n`;
+      }
+
+      // Aggiorna interfaccia
+      ultimoNumeroEl.textContent = numero.toFixed(4);
+      distanzaEl.textContent = distanza.toFixed(4);
+      logEl.textContent += `Numero: ${numero.toFixed(4)} | Distanza da 0.5: ${distanza.toFixed(4)}\n`;
+      logEl.scrollTop = logEl.scrollHeight;
+    }
+
+    // Avvia la generazione ogni 500ms
+    setInterval(generaNumeroCasuale, 500);
+  </script>
+</body>
+</html>
