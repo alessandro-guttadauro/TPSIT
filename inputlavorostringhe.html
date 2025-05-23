@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <title>Elaborazione Stringhe</title>
+  <style>
+    body { font-family: Arial; padding: 20px; }
+    input { margin: 5px; }
+    #output { margin-top: 20px; white-space: pre-line; }
+  </style>
+</head>
+<body>
+  <h2>Analisi di due stringhe</h2>
+
+  <form onsubmit="elabora(event)">
+    <label for="str1">Stringa A:</label><br>
+    <input type="text" id="str1" required><br>
+    
+    <label for="str2">Stringa B:</label><br>
+    <input type="text" id="str2" required><br>
+    
+    <button type="submit">Elabora</button>
+  </form>
+
+  <div id="output"></div>
+
+  <script>
+    function elabora(event) {
+      event.preventDefault();
+
+      const a = document.getElementById('str1').value;
+      const b = document.getElementById('str2').value;
+      const output = document.getElementById('output');
+
+      const lenA = a.length;
+      const lenB = b.length;
+      const reversedA = reverseString(a);
+      const reversedB = reverseString(b);
+      const concatenated = concatStrings(a, b);
+      const sumLength = lenA + lenB;
+
+      let result = `Lunghezza di A: ${lenA}
+Lunghezza di B: ${lenB}
+A al contrario: ${reversedA}
+B al contrario: ${reversedB}
+Concatenazione A+B: ${concatenated}
+Somma lunghezze: ${sumLength}`;
+
+      if (lenB > 20) {
+        result += `\nATTENZIONE: La stringa B è troppo lunga!`;
+      }
+
+      output.textContent = result;
+    }
+
+    function reverseString(str) {
+      return str.split('').reverse().join('');
+    }
+
+    function concatStrings(s1, s2) {
+      return s1 + s2;
+    }
+  </script>
+</body>
+</html>
